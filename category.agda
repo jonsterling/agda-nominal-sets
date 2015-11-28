@@ -1,5 +1,3 @@
-{-# OPTIONS --copatterns #-}
-
 module category where
 
 open import Agda.Primitive
