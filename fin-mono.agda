@@ -3,9 +3,8 @@ module fin-mono where
 import list
 import category as cat
 
-module _ {ℓ} {𝒮 : Set ℓ} where
-  _↪_ : list.t 𝒮 → list.t 𝒮 → Set ℓ
-  xs ↪ ys = {x : 𝒮} → x list.∈ xs → x list.∈ ys
+_↪_ : {ℓ : _} {𝒮 : Set ℓ} → list.t 𝒮 → list.t 𝒮 → Set ℓ
+xs ↪ ys = {x : _} → x list.∈ xs → x list.∈ ys
 
 cat : {ℓ : _} (𝒮 : Set ℓ) → cat.t ℓ ℓ
 cat.obj (cat 𝒮) = list.t 𝒮
