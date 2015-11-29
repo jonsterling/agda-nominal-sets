@@ -1,5 +1,7 @@
 module fin-mono where
 
+open import Agda.Primitive
+
 import list
 import Category as C
 import Type as T; open T using (_,_)
@@ -10,18 +12,10 @@ open S.Map using (_$₀_; _$₁_)
 _↪₀_ : {ℓ : _} {𝒮 : Set ℓ} → list.t 𝒮 → list.t 𝒮 → Set ℓ
 xs ↪₀ ys = {x : _} → x list.∈ xs → x list.∈ ys
 
-squash : {d : _} ..{ℓᵒ ℓʰ : _} (A : S.t d ℓᵒ ℓʰ) → S.t d ℓᵒ ℓʰ
-S.obj (squash A) = S.obj A
-S.homᵗ (squash A) _ = T.𝟙.t
-S.idnᵗ (squash A) _ = T.*
-S.cmpᵗ (squash A) _ = T.*
-S.invᵗ (squash {S.Dir.≤} A) = T.*
-S.invᵗ (squash {S.Dir.≈} A) _ = T.*
+_↪_ : {ℓᵒ : _} {𝒮 : Set ℓᵒ} → list.t 𝒮 → list.t 𝒮 → S.t S.Dir.≈ ℓᵒ lzero
+xs ↪ ys = S.T↑S (xs ↪₀ ys)
 
-_↪_ : {ℓᵒ : _} {𝒮 : Set ℓᵒ} → list.t 𝒮 → list.t 𝒮 → S.t S.Dir.≈ ℓᵒ ℓᵒ
-xs ↪ ys = squash (S.≡.s (xs ↪₀ ys))
-
-cat : {ℓ : _} (𝒮 : Set ℓ) → C.t ℓ ℓ ℓ
+cat : {ℓ : _} (𝒮 : Set ℓ) → C.t ℓ ℓ lzero
 C.obj (cat 𝒮) =
   list.t 𝒮
 C.homˢ (cat 𝒮) (xs , ys) =
