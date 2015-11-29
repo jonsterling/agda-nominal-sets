@@ -1,0 +1,3 @@
+[submodule "groupoids-lib"]
+	path = groupoids-lib
+	url = git@github.com:freebroccolo/agda-groupoids.git
