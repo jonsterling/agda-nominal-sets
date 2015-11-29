@@ -3,15 +3,16 @@ module sheaf where
 open import Agda.Primitive
 
 open import Common
-module C where
-  module I where
-    module SETOID where
-      open import Category.Instances.SETOID public
-  open import Category public
-    hiding (module Map)
-  module Map where
-    open Category.Map public
-    open import Groupoid.Presheaf {Dir.≤} public
+private
+  module C where
+    module I where
+      module SETOID where
+        open import Category.Instances.SETOID public
+    open import Category public
+      hiding (module Map)
+    module Map where
+      open Category.Map public
+      open import Groupoid.Presheaf {Dir.≤} public
 
 import Setoid as S
 import Type as T; open T using (_,_)
@@ -24,7 +25,7 @@ is-atomic-sheaf
   → 𝒞 C.Map.⇏₀ᵗ C.I.SETOID.c ℓ₁ᵒ ℓ₁ʰ
   → Set _
 is-atomic-sheaf {𝒞 = 𝒞} 𝔉 =
-  {e c d : C.obj 𝒞}
+  {e d c : C.obj 𝒞}
     → (f : S.obj (C.homˢ 𝒞 (d , c)))
     → (y : S.obj (𝔉 C.Map.$₀ d))
     → ((g h : S.obj (C.homˢ 𝒞 (e , d)))
@@ -54,3 +55,5 @@ record t
   field
     π : 𝒞 C.Map.⇏₀ᵗ C.I.SETOID.c ℓ₁ᵒ ℓ₁ʰ
     .glue : is-atomic-sheaf π
+
+open t public
