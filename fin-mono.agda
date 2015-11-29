@@ -16,6 +16,7 @@ module _ ..{ℓ : _} where
 
     _↪_ : S.t S.Dir.≈ ℓ lzero
     _↪_ = S.T↑S _↪₀_
+    --TODO: this probably shouldn't be squashed!
 
   cat
     : Set ℓ
