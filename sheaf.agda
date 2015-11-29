@@ -25,10 +25,10 @@ is-atomic-sheaf
   → 𝒞 C.Map.⇏₀ᵗ C.I.SETOID.c ℓ₁ᵒ ℓ₁ʰ
   → Set _
 is-atomic-sheaf {𝒞 = 𝒞} 𝔉 =
-  {e d c : C.obj 𝒞}
+  {d c : C.obj 𝒞}
     → (f : S.obj (C.homˢ 𝒞 (d , c)))
     → (y : S.obj (𝔉 C.Map.$₀ d))
-    → ((g h : S.obj (C.homˢ 𝒞 (e , d)))
+    → ((e : C.obj 𝒞) (g h : S.obj (C.homˢ 𝒞 (e , d)))
          → S.homᵗ
              (C.homˢ 𝒞 (e , c))
              ( C.cmpˢ 𝒞 S.Map.$₀ (f , g)
