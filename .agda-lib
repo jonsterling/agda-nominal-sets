@@ -1,0 +1,4 @@
+name: nominal-sets
+include:
+  .
+  groupoids-lib/src
