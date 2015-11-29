@@ -9,7 +9,7 @@ import Setoid as S
 
 open S.Map using (_$₀_; _$₁_)
 
-module _ {ℓ : _} where
+module _ ..{ℓ : _} where
   module _ {𝒮 : Set ℓ} (xs ys : list.t 𝒮) where
     _↪₀_ : Set ℓ
     _↪₀_ = {x : _} → x list.∈ xs → x list.∈ ys

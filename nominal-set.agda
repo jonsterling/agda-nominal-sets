@@ -2,9 +2,9 @@ module nominal-set where
 
 open import Agda.Primitive
 
-import category as cat
+import sheaf as Sh
 import fin-mono as I
-import sheaf as sh
+import Category as C
 
-t : ..{ℓ : _} ..(ℓ′ : _) (𝒮 : Set ℓ) → Set (lsuc ℓ′ ⊔ ℓ)
-t ℓ 𝒮 = sh.t ℓ (cat.op (I.cat 𝒮))
+t : ..{ℓ : _} (𝒮 : Set ℓ) → Set _
+t 𝒮 = Sh.t {ℓ₁ᵒ = lzero} {ℓ₁ʰ = lzero} (C.Op.g (I.cat 𝒮))
