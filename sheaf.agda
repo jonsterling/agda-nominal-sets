@@ -14,15 +14,15 @@ module C where
     open import Groupoid.Presheaf {Dir.≤} public
 
 import Setoid as S
-
 import Type as T; open T using (_,_)
+import coproduct as ∐
 
 -- atomic sheaves
 is-atomic-sheaf
   : ..{ℓ₀ᵒ ℓ₀ˢᵒ ℓ₀ˢʰ ℓ₁ᵒ ℓ₁ʰ : _}
   → {𝒞 : C.t ℓ₀ᵒ ℓ₀ˢᵒ ℓ₀ˢʰ}
   → 𝒞 C.Map.⇏₀ᵗ C.I.SETOID.c ℓ₁ᵒ ℓ₁ʰ
-  → Set
+  → Set _
 is-atomic-sheaf {𝒞 = 𝒞} 𝔉 =
   {e c d : C.obj 𝒞}
     → (f : S.obj (C.homˢ 𝒞 (d , c)))
@@ -39,4 +39,9 @@ is-atomic-sheaf {𝒞 = 𝒞} 𝔉 =
              , (C.Map.-$₁ˢ- 𝔉 S.Map.$₀ h) S.Map.$₀ y
              )
       )
-    → {!!} -- there exists a unique x : 𝔉 c such that y ~ 𝔉 f x
+    → (let φ x = S.homᵗ (𝔉 C.Map.$₀ d) (y , (C.Map.-$₁ˢ- 𝔉 S.Map.$₀ f) S.Map.$₀ x))
+    → ∐.t
+        (S.obj (𝔉 C.Map.$₀ c))
+        (λ x →
+          φ x T.Ten.⊗ (∀ z → φ z → S.homᵗ (𝔉 C.Map.$₀ c) (x , z))
+        )
